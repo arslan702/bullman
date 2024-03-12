@@ -1,0 +1,186 @@
+"use client";
+import React, { useState } from "react";
+import Image from "next/image";
+import img from "../../../Images/24.webp";
+import img1 from "../../../Images/23.webp";
+import img2 from "../../../Images/13.webp";
+import img3 from "../../../Images/14.webp";
+import img4 from "../../../Images/15.webp";
+import img5 from "../../../Images/16.webp";
+import img6 from "../../../Images/17.webp";
+import img7 from "../../../Images/18.webp";
+
+
+const Tabs = () => {
+  const [activeTab, setActiveTab] = useState(1);
+
+  const handleTabClick = (tabIndex) => {
+    setActiveTab(tabIndex);
+  };
+
+  return (
+    <div className=" rounded-lg md:px-12 pt-10 ">
+      <div className="md:flex md:justify-between md:px-0 px-6  ">
+        <div>
+          <p className="text-[20px] md:max-w-72 max-w-48 border-black pb-2  border-b-[2px] ">
+            <b>NOTRE SÉLECTION</b>{" "}
+          </p>
+        </div>
+        <div className="md:flex md:space-x-3 md:py-0 py-2 ">
+          <button
+            className={`w-full p-2 text-[14px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
+              activeTab === 1 ? "bg-[#E6EAEF] " : "bg-transparent "
+            }`}
+            onClick={() => handleTabClick(1)}
+          >
+            BESTSELLERS
+          </button>
+          <button
+            className={`w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
+              activeTab === 2 ? "bg-gray-200" : "bg-transparent "
+            }`}
+            onClick={() => handleTabClick(2)}
+          >
+            DUMBBELLS&KETTLEBELLS
+          </button>
+          <button
+            className={`w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
+              activeTab === 3 ? "bg-gray-200" : "bg-transparent "
+            }`}
+            onClick={() => handleTabClick(3)}
+          >
+            PLATES
+          </button>
+          <button
+            className={`w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
+              activeTab === 4 ? "bg-gray-200" : "bg-transparent "
+            }`}
+            onClick={() => handleTabClick(4)}
+          >
+            BAREBELLS
+          </button>
+          <button
+            className={`w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
+              activeTab === 5 ? "bg-gray-200" : "bg-transparent "
+            }`}
+            onClick={() => handleTabClick(5)}
+          >
+            MACHINE&ERGOS
+          </button>
+          <button
+            className={`w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
+              activeTab === 6 ? "bg-gray-200" : "bg-transparent "
+            }`}
+            onClick={() => handleTabClick(6)}
+          >
+            FREESHIPPING
+          </button>
+        </div>
+      </div>
+      <div className="">
+        {activeTab === 1 && (
+          <div>
+            <div className="grid md:grid-cols-4 grid-cols-2 cursor-pointer px-4 ">
+              <div className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+                <div className="relative h-full ">
+                  <Image src={img} className="h-[250px] w-[350px] hover:opacity-0  " />
+                  <Image
+                    src={img1}
+                    className="h-[250px] w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100  "
+                  />
+                </div> 
+                <p className="text-[12px] font-[500] " >PLYOBOX</p> 
+                <p className="text-[12px] pt-2 font-[500] "  >€82.50</p>            
+              </div>
+             
+              <div className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+                <div className="relative h-full ">
+                  <Image src={img2} className="h-[250px] w-[350px] hover:opacity-0  " />
+                  <Image
+                    src={img3}
+                    className="h-[250px] w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100  "
+                  />
+                </div> 
+                <p className="text-[12px] font-[500] " >PLYOBOX</p> 
+                <p className="text-[12px] pt-2 font-[500] "  >€82.50</p>            
+              </div>
+              <div className="md:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+                <div className="relative h-full">
+                  <Image src={img4} className="h-full w-full hover:opacity-0 " />
+                  <Image
+                    src={img5}
+                    className="h-full w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100"
+                  />
+                </div>  
+                <p className="text-[12px] font-[500] " >PLYOBOX</p> 
+                <p className="text-[12px] pt-2 font-[500] "  >€82.50</p>              
+              </div>
+              <div className="md:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+                <div className="relative h-full">
+                  <Image src={img6} className="h-full w-full hover:opacity-0 " />
+                  <Image
+                    src={img7}
+                    className="h-full w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100"
+                  />
+                </div>   
+                <p className="text-[12px] font-[500] " >PLYOBOX</p> 
+                <p className="text-[12px] pt-2 font-[500] "  >€82.50</p>             
+              </div>
+              <div className="md:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+                <div className="relative h-full">
+                  <Image src={img1} className="h-full w-full hover:opacity-0 " />
+                  <Image
+                    src={img}
+                    className="h-full w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100  "
+                  />
+                </div> 
+                <p className="text-[12px] font-[500] " >PLYOBOX</p> 
+                <p className="text-[12px] pt-2 font-[500] "  >€82.50</p>            
+              </div>
+              <div className="md:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+                <div className="relative h-full">
+                  <Image src={img3} className="h-full w-full hover:opacity-0 " />
+                  <Image
+                    src={img2}
+                    className="h-full w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100"
+                  />
+                </div>  
+                <p className="text-[12px] font-[500] " >PLYOBOX</p> 
+                <p className="text-[12px] pt-2 font-[500] "  >€82.50</p>              
+              </div>
+              <div className="md:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+                <div className="relative h-full">
+                  <Image src={img5} className="h-full w-full hover:opacity-0 " />
+                  <Image
+                    src={img4}
+                    className="h-full w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100"
+                  />
+                </div>  
+                <p className="text-[12px] font-[500] " >PLYOBOX</p> 
+                <p className="text-[12px] pt-2 font-[500] "  >€82.50</p>              
+              </div>
+              <div className="md:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+                <div className="relative h-full">
+                  <Image src={img7} className="h-full w-full hover:opacity-0 " />
+                  <Image
+                    src={img6}
+                    className="h-full w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100"
+                  />
+                </div>   
+                <p className="text-[12px] font-[500] " >PLYOBOX</p> 
+                <p className="text-[12px] pt-2 font-[500] "  >€82.50</p>             
+              </div>
+            </div>
+          </div>
+        )}
+        {activeTab === 2 && <div>Content for Tab 2</div>}
+        {activeTab === 3 && <div>Content for Tab 3</div>}
+        {activeTab === 4 && <div>Content for Tab 3</div>}
+        {activeTab === 5 && <div>Content for Tab 3</div>}
+        {activeTab === 6 && <div>Content for Tab 3</div>}
+      </div>
+    </div>
+  );
+};
+
+export default Tabs;
