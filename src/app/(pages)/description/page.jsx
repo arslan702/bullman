@@ -31,7 +31,6 @@ export default function Description() {
 
   const handleImageClick = () => {
     togglePopup(selectedImage);
-    // Navigate to the desired URL
     window.location.href =
       "https://bullmanequipment.com/fr/shop/69-96-plaques-en-caoutchouc-tri-grip-paire-3760849753518.html#/32-poids-5_kg_paire";
   };
@@ -147,33 +146,57 @@ export default function Description() {
                   </div>
                 </div>
               )}
-              {activeTab === 2 && 
-              <div className="px-2 " >
-               <p><b>LIFETIME WARRANTY</b> </p> 
-               <br />
-               <p className="font-[400] " >All our accessories and small equipment are guaranteed for 2 years. <br />
-Our bars, flat machines and racks are guaranteed for 5 years.</p>
-                </div>}
-              {activeTab === 3 && 
-              <div>
-                <p><b>SHIPPING</b></p>
-                <br />
-                <p className=" font-[600] " >For any order over €500.00 we offer free shipping costs.</p>
-                <br />
-                <p className="text-[14px] font-[500]  " >With the exception of slabs, racks, certain bars and machines which are subject to a fixed price.
-
-Transport known as “BULLMAN HOME” is at the choice of Bullman Equipment. <br />
-
-When products are in stock, we generally ship within 48 hours. <br />
-
-The contribution to shipping costs is calculated based on the price of the basket, the weight and the selected carrier.</p>
-                </div>}
-              {activeTab === 4 && <div className="px-2 "  >
-                <p className="font-[500] " >SECURE PAYMENT</p>
-                <br />
-                <p className="text-[14px] font-[500] " >We offer secure, SSL encrypted payment.</p> <br />
-                <p className="font-[600]" >Cash  : <br /> -Bank cards, <br /> -Instant transfer, <br /> -Apple Pay. </p>
-                </div>}
+              {activeTab === 2 && (
+                <div className="px-2 ">
+                  <p>
+                    <b>LIFETIME WARRANTY</b>{" "}
+                  </p>
+                  <br />
+                  <p className="font-[400] ">
+                    All our accessories and small equipment are guaranteed for 2
+                    years. <br />
+                    Our bars, flat machines and racks are guaranteed for 5
+                    years.
+                  </p>
+                </div>
+              )}
+              {activeTab === 3 && (
+                <div>
+                  <p>
+                    <b>SHIPPING</b>
+                  </p>
+                  <br />
+                  <p className=" font-[600] ">
+                    For any order over €500.00 we offer free shipping costs.
+                  </p>
+                  <br />
+                  <p className="text-[14px] font-[500]  ">
+                    With the exception of slabs, racks, certain bars and
+                    machines which are subject to a fixed price. Transport known
+                    as “BULLMAN HOME” is at the choice of Bullman Equipment.{" "}
+                    <br />
+                    When products are in stock, we generally ship within 48
+                    hours. <br />
+                    The contribution to shipping costs is calculated based on
+                    the price of the basket, the weight and the selected
+                    carrier.
+                  </p>
+                </div>
+              )}
+              {activeTab === 4 && (
+                <div className="px-2 ">
+                  <p className="font-[500] ">SECURE PAYMENT</p>
+                  <br />
+                  <p className="text-[14px] font-[500] ">
+                    We offer secure, SSL encrypted payment.
+                  </p>{" "}
+                  <br />
+                  <p className="font-[600]">
+                    Cash : <br /> -Bank cards, <br /> -Instant transfer, <br />{" "}
+                    -Apple Pay.{" "}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -372,9 +395,9 @@ The contribution to shipping costs is calculated based on the price of the baske
           </div>
         </div>
       )}
-      <Most/>
-      
-      <Seller/>
+      <Most />
+
+      <Seller />
     </div>
   );
 }
