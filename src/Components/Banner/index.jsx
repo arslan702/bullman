@@ -1,20 +1,20 @@
-import Image from 'next/image';
+
+ "use client"
 import React from 'react';
-import img from '../../../Images/gym.webp'
 
-
-export default function Banner() {
+function VideoComponent() {
+  
   return (
-      <div>
-    {/* <video class="h-full w-full rounded-lg  "  autoplay muted >
-    <source
-      src="https://www.pexels.com/video/a-man-lifting-weights-in-a-fitness-gym-3196220/"
-      type="video/mp4"
-    />
-    Your browser does not support the video tag.
-  </video> */}
-<Image src={img} className='h-screen w-full ' />
-  </div>
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <video loop muted autoPlay style={{ width: '100%', height: '100%' }}>
+        <source src="/Video/video.mp4" type="video/mp4" />
+      </video>
+      <div style={{ position: 'absolute', top: '10px', right: '10px', color: 'white' }}>
+    {/* <p className='text-[30px] font-[600] ' >Prix justes at Accesibles </p> */}
 
+      </div>
+    </div>
   );
 }
+
+export default VideoComponent;

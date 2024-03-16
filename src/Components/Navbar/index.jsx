@@ -21,7 +21,7 @@ export default function Navbar() {
           <input
             type="text"
             placeholder="Search..."
-            className="px-4 py-2 pr-10 md:w-[400px] w-[100%] bg-black flex flex-1 border border-[#636363] rounded-[20px] focus:outline-none"
+            className="px-4 py-2 pr-10 md:w-[400px] text-white w-[100%] bg-black flex flex-1 border border-[#636363] rounded-[20px] focus:outline-none"
           />
           <svg
             className="absolute right-2 h-[33px] w-[42px] text-gray-400 bg-black p-2"

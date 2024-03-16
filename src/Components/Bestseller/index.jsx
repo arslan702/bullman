@@ -4,12 +4,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
-import img from "../../../Images/25.webp";
-import img1 from "../../../Images/26.webp";
-import img2 from "../../../Images/27.webp";
-import img3 from "../../../Images/28.webp";
+import img from "../../../Images/12.webp";
+import img1 from "../../../Images/16.webp";
+import img2 from "../../../Images/19.webp";
+import img3 from "../../../Images/22.webp";
 
-export default function Packs() {
+export default function Seller() {
   const FcPrevArrow = (props) => {
     const { className, onClick } = props;
     return (
@@ -34,7 +34,7 @@ export default function Packs() {
 
   const prevArrowStyles = {
     position: "absolute",
-    top: "40%",
+    top: "50%",
     left: "15px",
     zIndex: "1",
     cursor: "pointer",
@@ -45,11 +45,12 @@ export default function Packs() {
     alignItems: "center",
     background: "black",
     justifyContent: "center",
+    
   };
 
   const nextArrowStyles = {
     position: "absolute",
-    top: "40%",
+    top: "50%",
     right: "15px",
     zIndex: "1",
     cursor: "pointer",
@@ -100,37 +101,37 @@ export default function Packs() {
   return (
     <div className="md:px-12 md:pt-10 mb-3">
       <div>
-        <p className="text-[20px] md:max-w-40 max-w-48 border-black pb-2 border-b-[2px]">
-          <b>NOS PACKS</b>{" "}
+        <p className="text-[20px]  ">
+          <b>BESTSELLERS</b>{" "}
         </p>
       </div>
       <Slider {...settings} >
-        <div className="px-4  overflow-hidden ">
+        <div className="px-2  overflow-hidden ">
           <Image src={img} className="w-full transition-all duration-300 cursor-pointer hover:scale-110 h-[270px]" />
-          <p className="text-[13px]">WOMEN'S COMPETITION PACK 150kg + bar</p>
+          <p className="text-[13px]">OLYMPIC DUMBBELL 52cm</p>
           <p className="pt-2">
-            <b>€654.17</b>{" "}
+            <b>€74.17</b>{" "}
           </p>
         </div>
-        <div className="px-4 overflow-hidden">
+        <div className="px-2 overflow-hidden">
           <Image src={img1} className="w-full transition-all duration-300 cursor-pointer hover:scale-110 h-[270px]" />
-          <p className="text-[13px]">WOMEN'S COMPETITION PACK 150kg + bar</p>
+          <p className="text-[13px]">WEIGHT BELT</p>
           <p className="pt-2">
-            <b>€654.17</b>{" "}
+            <b>€54.17</b>{" "}
           </p>
         </div>
-        <div className="px-4 overflow-hidden">
+        <div className="px-2 overflow-hidden">
           <Image src={img2} className="w-full transition-all duration-300 cursor-pointer hover:scale-110 h-[270px]" />
-          <p className="text-[13px]">MEN COMPETITION PACK 100kg</p>
+          <p className="text-[13px]">OLYMPIC DISCS FROM 1.25 to 25 kg (pair)</p>
           <p className="pt-2">
-            <b>€654.17</b>{" "}
+            <b>€254.17</b>{" "}
           </p>
         </div>
-        <div className="px-4 overflow-hidden">
+        <div className="px-2 overflow-hidden">
           <Image src={img3} className="w-full transition-all duration-300 cursor-pointer hover:scale-110 h-[270px]" />
-          <p className="text-[13px]"> COMPETITION PACK </p>
+          <p className="text-[13px]">ALUPRO SKIPPING ROPE</p>
           <p className="pt-2">
-            <b>€654.17</b>{" "}
+            <b>€454.17</b>{" "}
           </p>
         </div>
       </Slider>
