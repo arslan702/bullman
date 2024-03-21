@@ -103,6 +103,8 @@ export default function Most() {
         <p className="text-[20px]  ">
           <b>MOST VIEWED PRODUCTS</b>{" "}
         </p>
+        <br />
+        <br />
       </div>
       <Slider {...settings} >
         <div className="px-2  overflow-hidden ">

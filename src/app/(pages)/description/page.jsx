@@ -31,14 +31,15 @@ export default function Description() {
 
   const handleImageClick = () => {
     togglePopup(selectedImage);
+    // Navigate to the desired URL
     window.location.href =
       "https://bullmanequipment.com/fr/shop/69-96-plaques-en-caoutchouc-tri-grip-paire-3760849753518.html#/32-poids-5_kg_paire";
   };
 
   return (
-    <div className="md:px-16 px-4 pt-3 py-3 mb-5 bg-[#FFFFFF] ">
+    <div className="md:px-16 px-4 pt-3 py-3 mb-5 bg-[#FFFFFF]  ">
       {/* Thumbnails */}
-      <div className="flex font-normal text-[12px] space-x-2 cursor-pointer px-4 ">
+      <div className="flex font-normal md:text-[12px] text-[11px] space-x-2 cursor-pointer px-4 ">
         <p>Welcome</p>
         <MdArrowRightAlt className="mt-1" />
         <p> CROSS TRAINING </p>
@@ -75,9 +76,9 @@ export default function Description() {
               </div>
             </div>
             {/* description details  */}
-            <div className="flex justify-between ">
+            <div className="flex justify-between   ">
               <button
-                className={`w-full md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
+                className={` md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
                   activeTab === 1 ? " border-b-2 " : " "
                 }`}
                 onClick={() => handleTabClick(1)}
@@ -85,7 +86,7 @@ export default function Description() {
                 DESCRIPTION
               </button>
               <button
-                className={`w-full  md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
+                className={`  md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
                   activeTab === 2 ? " border-b-2 " : " "
                 }`}
                 onClick={() => handleTabClick(2)}
@@ -93,7 +94,7 @@ export default function Description() {
                 GURANTEE
               </button>
               <button
-                className={`w-full  md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
+                className={`  md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
                   activeTab === 3 ? " border-b-2 " : " "
                 }`}
                 onClick={() => handleTabClick(3)}
@@ -101,7 +102,7 @@ export default function Description() {
                 Shipping
               </button>
               <button
-                className={`w-full  md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
+                className={`  md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
                   activeTab === 4 ? " border-b-2 " : " "
                 }`}
                 onClick={() => handleTabClick(4)}
@@ -113,7 +114,7 @@ export default function Description() {
             {/* description  Tab explanation */}
             <div>
               {activeTab === 1 && (
-                <div className="px-2  ">
+                <div className="px-2   ">
                   <p className="text-[14px] font-[500] ">
                     Our Tri Grip disc is a weight training disc used in most
                     strength or muscular endurance training.
@@ -126,7 +127,7 @@ export default function Description() {
                   </p>
                   <div className="md:flex overflow-hidden gap-3 mt-2 ">
                     <div className="w-[350px] ">
-                      <Image src={img10} className="h-[300px] w-[400px] " />
+                      <Image src={img10} className="h-[300px] md:w-[400px] w-[100%] " />
                       <u className="font-[600] ">1-EASY HANDLING</u>
                       <p className="text-[14px] leading-7 ">
                         The 3 integrated ergonomic handles allow easy handling
@@ -134,8 +135,8 @@ export default function Description() {
                         exercises and reducing the risk of injury.
                       </p>
                     </div>
-                    <div className="w-[350px] ">
-                      <Image src={img9} className="h-[300px] w-[400px] " />
+                    <div className="w-[350px]  ">
+                      <Image src={img9} className="h-[300px] md:w-[400px] w-[100%] " />
                       <u className="font-[600] ">2-PROTECTIVE COATING</u>
                       <p className="text-[14px] leading-7 ">
                         These discs are covered with a quality rubber coating,
@@ -146,57 +147,33 @@ export default function Description() {
                   </div>
                 </div>
               )}
-              {activeTab === 2 && (
-                <div className="px-2 ">
-                  <p>
-                    <b>LIFETIME WARRANTY</b>{" "}
-                  </p>
-                  <br />
-                  <p className="font-[400] ">
-                    All our accessories and small equipment are guaranteed for 2
-                    years. <br />
-                    Our bars, flat machines and racks are guaranteed for 5
-                    years.
-                  </p>
-                </div>
-              )}
-              {activeTab === 3 && (
-                <div>
-                  <p>
-                    <b>SHIPPING</b>
-                  </p>
-                  <br />
-                  <p className=" font-[600] ">
-                    For any order over €500.00 we offer free shipping costs.
-                  </p>
-                  <br />
-                  <p className="text-[14px] font-[500]  ">
-                    With the exception of slabs, racks, certain bars and
-                    machines which are subject to a fixed price. Transport known
-                    as “BULLMAN HOME” is at the choice of Bullman Equipment.{" "}
-                    <br />
-                    When products are in stock, we generally ship within 48
-                    hours. <br />
-                    The contribution to shipping costs is calculated based on
-                    the price of the basket, the weight and the selected
-                    carrier.
-                  </p>
-                </div>
-              )}
-              {activeTab === 4 && (
-                <div className="px-2 ">
-                  <p className="font-[500] ">SECURE PAYMENT</p>
-                  <br />
-                  <p className="text-[14px] font-[500] ">
-                    We offer secure, SSL encrypted payment.
-                  </p>{" "}
-                  <br />
-                  <p className="font-[600]">
-                    Cash : <br /> -Bank cards, <br /> -Instant transfer, <br />{" "}
-                    -Apple Pay.{" "}
-                  </p>
-                </div>
-              )}
+              {activeTab === 2 && 
+              <div className="px-2 " >
+               <p><b>LIFETIME WARRANTY</b> </p> 
+               <br />
+               <p className="font-[400] " >All our accessories and small equipment are guaranteed for 2 years. <br />
+Our bars, flat machines and racks are guaranteed for 5 years.</p>
+                </div>}
+              {activeTab === 3 && 
+              <div>
+                <p><b>SHIPPING</b></p>
+                <br />
+                <p className=" font-[600] " >For any order over €500.00 we offer free shipping costs.</p>
+                <br />
+                <p className="text-[14px] font-[500]  " >With the exception of slabs, racks, certain bars and machines which are subject to a fixed price.
+
+Transport known as “BULLMAN HOME” is at the choice of Bullman Equipment. <br />
+
+When products are in stock, we generally ship within 48 hours. <br />
+
+The contribution to shipping costs is calculated based on the price of the basket, the weight and the selected carrier.</p>
+                </div>}
+              {activeTab === 4 && <div className="px-2 "  >
+                <p className="font-[500] " >SECURE PAYMENT</p>
+                <br />
+                <p className="text-[14px] font-[500] " >We offer secure, SSL encrypted payment.</p> <br />
+                <p className="font-[600]" >Cash  : <br /> -Bank cards, <br /> -Instant transfer, <br /> -Apple Pay. </p>
+                </div>}
             </div>
           </div>
         </div>
@@ -210,14 +187,14 @@ export default function Description() {
 
           {/* Weight details */}
           <div>
-            <div className="flex justify-between mt-4 ">
+            <div className="flex justify-between gap-1 items-center mt-4 ">
               <p className="text-[14px] pt-2 font-normal">
                 Weight: 1.25 kg - Pair
               </p>
               <p className="pt-1">
                 <b>€8.33</b>
               </p>
-              <div className="flex md:gap-2 gap-1 cursor-pointer">
+              <div className="flex md:gap-2 gap-1 items-center cursor-pointer">
                 <p className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[20px]">
                   -
                 </p>
@@ -229,14 +206,14 @@ export default function Description() {
                 </p>
               </div>
             </div>
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between gap-1 items-center  mt-4">
               <p className="text-[14px] pt-2 font-normal">
                 Weight: 3.25 kg - Pair
               </p>
               <p className="pt-1">
                 <b>€15.33</b>
               </p>
-              <div className="flex md:gap-2 gap-1 cursor-pointer">
+              <div className="flex md:gap-2 gap-1 cursor-pointer items-center ">
                 <p className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[20px]">
                   -
                 </p>
@@ -248,14 +225,14 @@ export default function Description() {
                 </p>
               </div>
             </div>
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between gap-1 items-center mt-4">
               <p className="text-[14px] pt-2 font-normal">
                 Weight: 2.25 kg - Pair
               </p>
               <p className="pt-1">
                 <b>€12.33</b>
               </p>
-              <div className="flex md:gap-2 gap-1 cursor-pointer">
+              <div className="flex md:gap-2 gap-1 items-center cursor-pointer">
                 <p className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[20px]">
                   -
                 </p>
@@ -267,14 +244,14 @@ export default function Description() {
                 </p>
               </div>
             </div>
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between gap-1 items-center mt-4">
               <p className="text-[14px] pt-2 font-normal">
                 Weight: 2.25 kg - Pair
               </p>
               <p className="pt-1">
                 <b>€12.33</b>
               </p>
-              <div className="flex md:gap-2 gap-1 cursor-pointer">
+              <div className="flex md:gap-2 gap-1 items-center cursor-pointer">
                 <p className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[20px]">
                   -
                 </p>
@@ -286,14 +263,14 @@ export default function Description() {
                 </p>
               </div>
             </div>
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between gap-1 items-center mt-4">
               <p className="text-[14px] pt-2 font-normal">
                 Weight: 2.25 kg - Pair
               </p>
               <p className="pt-1">
                 <b>€12.33</b>
               </p>
-              <div className="flex md:gap-2 gap-1 cursor-pointer">
+              <div className="flex md:gap-2 gap-1 items-center cursor-pointer">
                 <p className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[20px]">
                   -
                 </p>
@@ -305,14 +282,14 @@ export default function Description() {
                 </p>
               </div>
             </div>
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between gap-1 items-center mt-4">
               <p className="text-[14px] pt-2 font-normal">
                 Weight: 3.25 kg - Pair
               </p>
               <p className="pt-1">
                 <b>€18.33</b>
               </p>
-              <div className="flex md:gap-2 gap-1 cursor-pointer">
+              <div className="flex md:gap-2 gap-1 items-center cursor-pointer">
                 <p className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[20px]">
                   -
                 </p>
@@ -395,9 +372,9 @@ export default function Description() {
           </div>
         </div>
       )}
-      <Most />
-
-      <Seller />
+      <Most/>
+      
+      <Seller/>
     </div>
   );
 }
