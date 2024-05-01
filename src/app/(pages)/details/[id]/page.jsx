@@ -1,24 +1,42 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdArrowRightAlt } from "react-icons/md";
 import Image from "next/image";
-import img1 from "../../../../Images/29.webp";
-import img2 from "../../../../Images/30.webp";
-import img3 from "../../../../Images/31.webp";
-import img4 from "../../../../Images/32.webp";
-import img5 from "../../../../Images/33.webp";
-import img6 from "../../../../Images/pay.webp";
-import img7 from "../../../../Images/sat.webp";
-import img8 from "../../../../Images/SHIPPING.webp";
-import img9 from "../../../../Images/plate1.webp";
-import img10 from "../../../../Images/plates.webp";
+import img1 from "../../../../../Images/29.webp";
+// import img2 from "../../../../../Images/30.webp";
+// import img3 from "../../../../../Images/31.webp";
+// import img4 from "../../../../../Images/32.webp";
+// import img5 from "../../../../../Images/33.webp";
+import img6 from "../../../../../Images/pay.webp";
+import img7 from "../../../../../Images/sat.webp";
+import img8 from "../../../../../Images/SHIPPING.webp";
+// import img9 from "../../../../../Images/plate1.webp";
+// import img10 from "../../../../../Images/plates.webp";
 import Most from "@/Components/Mostview";
 import Seller from "@/Components/Bestseller";
+import axios from "axios";
+import { API_URL } from "@/config";
+import parse from 'html-react-parser';
 
-export default function Description() {
+export default function Details({params}) {
+  console.log({params})
   const [showPopup, setShowPopup] = useState(false);
   const [selectedImage, setSelectedImage] = useState(img1);
   const [activeTab, setActiveTab] = useState(1);
+  const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    axios.get(`${API_URL}/product/getOne/${params?.id}`)
+    .then((res) => {
+      setProduct(res?.data)
+    })
+    .catch((err) => {
+      console.log({err})
+    })
+  },[])
+
+  console.log({product})
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
@@ -35,6 +53,28 @@ export default function Description() {
     window.location.href =
       "https://bullmanequipment.com/fr/shop/69-96-plaques-en-caoutchouc-tri-grip-paire-3760849753518.html#/32-poids-5_kg_paire";
   };
+
+  function addToCart(product, quantity) {
+    // Get existing products from localStorage
+    let existingProducts = JSON?.parse(localStorage?.getItem('products')) || [];
+  
+    // Check if the product with the same ID already exists
+    const existingProductIndex = existingProducts?.findIndex(
+      (item) => item?._id === product._id
+    );
+  
+    if (existingProductIndex !== -1) {
+      // Product with the same ID already exists, update its quantity
+      existingProducts[existingProductIndex].orderQuantity += quantity;
+    } else {
+      // Product with the same ID does not exist, add it to the array
+      existingProducts.push({ ...product, orderQuantity: quantity });
+    }
+  
+    // Update localStorage with the modified products array
+    localStorage.setItem('products', JSON.stringify(existingProducts));
+  }
+  
 
   return (
     <div className="md:px-16 px-4 pt-3 py-3 mb-5 bg-[#FFFFFF]  ">
@@ -54,12 +94,12 @@ export default function Description() {
             <div className="flex">
               <div className="flex flex-col cursor-pointer  ">
                 {/* Thumbnails */}
-                {[img1, img2, img3, img4, img5].map((image, index) => (
+                {product?.images?.map((image, index) => (
                   <Image
                     key={index}
                     className="thumbnail"
-                    src={image}
-                    onClick={() => togglePopup(image)}
+                    src={`${API_URL}/${image?.url}`}
+                    onClick={() => togglePopup(image?.url)}
                     width={100}
                     height={100}
                   />
@@ -68,11 +108,16 @@ export default function Description() {
 
               {/* Main Image */}
               <div className="flex items-start justify-center cursor-pointer ">
-                <Image
-                  src={selectedImage}
+                {product?.images?.map((image) => (
+                  image?.priority == true && 
+                <img
+                  src={`${API_URL}/${image?.url}` || `${API_URL}/${selectedImage}`}
                   alt="selected"
+                  // width={300}
+                  // height={300}
                   className="max-w-4/5 h-auto"
                 />
+                ))}
               </div>
             </div>
             {/* description details  */}
@@ -115,7 +160,8 @@ export default function Description() {
             <div>
               {activeTab === 1 && (
                 <div className="px-2   ">
-                  <p className="text-[14px] font-[500] ">
+                  {parse(product?.description ? product?.description : '')}
+                  {/* <p className="text-[14px] font-[500] ">
                     Our Tri Grip disc is a weight training disc used in most
                     strength or muscular endurance training.
                   </p>
@@ -144,7 +190,7 @@ export default function Description() {
                         scratches while reducing noise during training.
                       </p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               )}
               {activeTab === 2 && 
@@ -181,12 +227,12 @@ The contribution to shipping costs is calculated based on the price of the baske
         <div className="md:w-[40%]  h-auto py-4  p-4 md:px-12 px-2 ">
           <p className="text-[22px] font-[600] max-w-96 pt-2 ">
             {" "}
-            OLYMPIC DISCS FROM 1.25 TO 25 KG (PAIR){" "}
+            {product?.name}{" "}
           </p>
           <i className="text-[12px] ">Shipped within 48 hours</i>
 
           {/* Weight details */}
-          <div>
+          {/* <div>
             <div className="flex justify-between gap-1 items-center mt-4 ">
               <p className="text-[14px] pt-2 font-normal">
                 Weight: 1.25 kg - Pair
@@ -301,32 +347,51 @@ The contribution to shipping costs is calculated based on the price of the baske
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
           <br />
-          <div className="border-[1px] border-[#9A9A9A] "> </div>
+          {/* <div className="border-[1px] border-[#9A9A9A] "> */}
+          <div className="flex md:gap-2 gap-1 items-center cursor-pointer">
+              <p onClick={() => setQuantity(quantity - 1)} className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[20px]">
+                -
+              </p>
+              <p className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[14px]">
+                {quantity}
+              </p>
+              <p onClick={() => setQuantity(quantity + 1)} className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[20px]">
+                +
+              </p>
+            </div>
+          {/* </div> */}
           <br />
-          <div className=" text-white cursor-pointer text-center py-2 bg-[#315593] hover:bg-gradient-to-b from-blue-700 to-blue-900 ">
+          <div className=" text-white cursor-pointer text-center py-2 bg-[#315593] hover:bg-gradient-to-b from-blue-700 to-blue-900">
             {" "}
-            <button>ADD TO CART</button>{" "}
+            <button onClick={addToCart(product, quantity)}>ADD TO CART</button>{" "}
           </div>
           <br />
+          <div className="mb-5">
+            <div style={{fontWeight: '700', fontSize: '16px', lineHeight: '23px', color: '#000000'}}>Total:</div><br/>
+            <div className="flex">
+              <div style={{fontWeight: '700', fontSize: '20px', lineHeight: '23px', color: '#000000'}}>€{quantity >= 1 ? quantity * product?.retail_price_tax_inc : product?.retail_price_tax_inc}<span className="text-[#7a7a7a] text-[16px] font-[400]">{' '}tax incl</span></div>
+              <div style={{fontWeight: '500', fontSize: '17px', lineHeight: '23px', color: '#000000', marginLeft: '20px'}}>€{quantity >= 1 ? quantity * product?.retail_price_tax_excl?.toFixed(2) : product?.retail_price_tax_excl?.toFixed(2)}<span className="text-[#7a7a7a] text-[16px] font-[400]">{' '}tax excl</span></div>
+            </div>
+          </div>
           {/* product specifications */}
           <div className="md:flex flex md:flex-row flex-col justify-center items-center  gap-5 ">
             <div className="md:flex flex md:flex-row flex-col justify-center items-center gap-2  ">
-              <Image src={img8} className="h-[25px] w-[30px] " />
+              <Image src={img8} alt="img" className="h-[25px] w-[30px] " />
               <p className="text-[9px] mt-1 ">Shipping</p>
             </div>
             <div className="md:flex gap-2 flex md:flex-row flex-col justify-center items-center">
-              <Image src={img7} className="h-[25px] w-[30px] " />
+              <Image src={img7} alt="img" className="h-[25px] w-[30px] " />
               <p className="text-[9px] mt-1 ">SATISFIED OR REFUNDED</p>
             </div>
             <div className="md:flex gap-2 flex md:flex-row flex-col justify-center items-center ">
-              <Image src={img6} className="h-[25px] w-[20px] " />
+              <Image src={img6} alt="img" className="h-[25px] w-[20px] " />
               <p className="text-[9px] mt-1 ">SECURE PAYMENT</p>
             </div>
           </div>
           <br />
-          <div>
+          {/* <div>
             <p className="text-[16px] font-medium border-b border-gray-300 pb-3 ">
               SPECIFICATIONS
             </p>
@@ -354,7 +419,7 @@ The contribution to shipping costs is calculated based on the price of the baske
               <p className=" w-[30%]  ">Guarantee </p>
               <p> 5 years</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -368,7 +433,7 @@ The contribution to shipping costs is calculated based on the price of the baske
             >
               &times;
             </span>
-            <Image src={selectedImage} alt="popup" className="w-full h-auto" />
+            <Image src={`${API_URL}/${selectedImage}`} width={350} height={350} alt="popup" className="w-full h-auto" />
           </div>
         </div>
       )}

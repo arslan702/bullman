@@ -8,8 +8,10 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import { CiLock } from "react-icons/ci";
 import Image from "next/image";
 import img from "../../../Images/logo.webp";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const router = useRouter();
   const [toggle, setToggle] = useState(false);
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
@@ -73,7 +75,7 @@ export default function Navbar() {
 
             <CiLock />
             <FaRegUser />
-            <RiShoppingCartLine />
+            <RiShoppingCartLine onClick={() => router.push(`/order`)}/>
           </div>
         </div>
       </div>

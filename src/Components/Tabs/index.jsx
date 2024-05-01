@@ -1,22 +1,43 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import img from "../../../Images/24.webp";
-import img1 from "../../../Images/23.webp";
-import img2 from "../../../Images/13.webp";
-import img3 from "../../../Images/14.webp";
-import img4 from "../../../Images/15.webp";
-import img5 from "../../../Images/16.webp";
-import img6 from "../../../Images/17.webp";
-import img7 from "../../../Images/18.webp";
+// import img from "../../../Images/24.webp";
+// import img1 from "../../../Images/23.webp";
+// import img2 from "../../../Images/13.webp";
+// import img3 from "../../../Images/14.webp";
+// import img4 from "../../../Images/15.webp";
+// import img5 from "../../../Images/16.webp";
+// import img6 from "../../../Images/17.webp";
+// import img7 from "../../../Images/18.webp";
+import axios from "axios";
+import { API_URL } from "@/config";
+import { useRouter } from "next/navigation";
 
 
 const Tabs = () => {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState(1);
+  const [products, setProducts] = useState([]);
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
+
+  useEffect(() => {
+    axios.get(`${API_URL}/product/get`)
+    .then((res) => {
+      setProducts(res?.data)
+    })
+    .catch((err) => {
+      console.log({err})
+    })
+  },[])
+
+  console.log({products})
+
+  const handleClick = (id) => {
+    router.push(`/details/${id}`)
+  } 
 
   return (
     <div className=" rounded-lg md:px-12 pt-10 ">
@@ -81,22 +102,28 @@ const Tabs = () => {
         {activeTab === 1 && (
           <div>
             <div className="grid md:grid-cols-4 grid-cols-2 cursor-pointer px-4 ">
-              <div className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+            {products?.map((prod) => (
+              <div key={prod?._id} onClick={() => handleClick(prod?._id)} className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
                 <div className="relative h-full ">
-                  <Image src={img} className="h-[250px] w-[350px] hover:opacity-0  " />
+                  <Image alt="img" src={`${API_URL}/${prod?.images[0]?.url}`} width={350} height={250} className="h-[250px] w-[350px] hover:opacity-0"/>
+                  {prod?.images[1]?.url && (
                   <Image
-                    src={img1}
+                    src={`${API_URL}/${prod?.images[1]?.url}`}
+                    alt="img"
+                    width={350} height={250}
                     className="h-[250px] w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100  "
                   />
+                  )}
                 </div> 
-                <p className="text-[12px] font-[500] " >PLYOBOX</p> 
-                <p className="text-[12px] pt-2 font-[500] "  >€82.50</p>            
+                <p className="text-[12px] font-[500]">{prod?.name}</p> 
+                <p className="text-[12px] pt-2 font-[500]">€{prod?.retail_price_tax_inc}</p>            
               </div>
-             
-              <div className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+             ))}
+              {/* <div className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
                 <div className="relative h-full ">
-                  <Image src={img2} className="h-[250px] w-[350px] hover:opacity-0  " />
+                  <Image alt="img" src={img2} className="h-[250px] w-[350px] hover:opacity-0"/>
                   <Image
+                    alt="img"
                     src={img3}
                     className="h-[250px] w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100  "
                   />
@@ -106,8 +133,9 @@ const Tabs = () => {
               </div>
               <div className="md:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
                 <div className="relative h-full">
-                  <Image src={img4} className="h-full w-full hover:opacity-0 " />
+                  <Image alt="img" src={img4} className="h-full w-full hover:opacity-0 " />
                   <Image
+                    alt="img"
                     src={img5}
                     className="h-full w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100"
                   />
@@ -117,8 +145,9 @@ const Tabs = () => {
               </div>
               <div className="md:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
                 <div className="relative h-full">
-                  <Image src={img6} className="h-full w-full hover:opacity-0 " />
+                  <Image alt="img" src={img6} className="h-full w-full hover:opacity-0 " />
                   <Image
+                    alt="img"
                     src={img7}
                     className="h-full w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100"
                   />
@@ -128,8 +157,9 @@ const Tabs = () => {
               </div>
               <div className="md:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
                 <div className="relative h-full">
-                  <Image src={img1} className="h-full w-full hover:opacity-0 " />
+                  <Image alt="img" src={img1} className="h-full w-full hover:opacity-0 " />
                   <Image
+                    alt="img"
                     src={img}
                     className="h-full w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100  "
                   />
@@ -139,8 +169,9 @@ const Tabs = () => {
               </div>
               <div className="md:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
                 <div className="relative h-full">
-                  <Image src={img3} className="h-full w-full hover:opacity-0 " />
+                  <Image alt="img" src={img3} className="h-full w-full hover:opacity-0 " />
                   <Image
+                    alt="img"
                     src={img2}
                     className="h-full w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100"
                   />
@@ -150,8 +181,9 @@ const Tabs = () => {
               </div>
               <div className="md:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
                 <div className="relative h-full">
-                  <Image src={img5} className="h-full w-full hover:opacity-0 " />
+                  <Image alt="img" src={img5} className="h-full w-full hover:opacity-0 " />
                   <Image
+                    alt="img"
                     src={img4}
                     className="h-full w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100"
                   />
@@ -161,15 +193,16 @@ const Tabs = () => {
               </div>
               <div className="md:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
                 <div className="relative h-full">
-                  <Image src={img7} className="h-full w-full hover:opacity-0 " />
+                  <Image alt="img" src={img7} className="h-full w-full hover:opacity-0 " />
                   <Image
+                    alt="img"
                     src={img6}
                     className="h-full w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100"
                   />
                 </div>   
                 <p className="text-[12px] font-[500] " >PLYOBOX</p> 
                 <p className="text-[12px] pt-2 font-[500] "  >€82.50</p>             
-              </div>
+              </div> */}
             </div>
           </div>
         )}

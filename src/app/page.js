@@ -6,7 +6,6 @@ import Tabs from "@/Components/Tabs";
 export default function Home() {
   return (
     <main className="">
-     
       <Banner/>
       <Category/>
       <Tabs/>
@@ -14,3 +13,4 @@ export default function Home() {
     </main>
   );
 }
+

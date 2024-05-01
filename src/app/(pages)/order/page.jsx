@@ -1,15 +1,17 @@
 "use client";
 import Most from "@/Components/Mostview";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import img from "../../../../Images/35.webp";
 import img1 from "../../../../Images/36.webp";
 import img2 from "../../../../Images/37.jpg";
 import img3 from "../../../../Images/footer/7.webp";
 import img4 from "../../../../Images/pay.svg";
-import img5 from "../../../../Images/15.webp"
+// import img5 from "../../../../Images/15.webp"
 import { RxTriangleDown } from "react-icons/rx";
 import { RxTriangleUp } from "react-icons/rx";
+import { API_URL } from "@/config";
+import axios from "axios";
 
 
 export default function Order() {
@@ -22,6 +24,38 @@ export default function Order() {
   const [transferOpen, setTransferOpen] = useState(true); // Track whether addresses section is open or closed
   const [selectedCountry, setSelectedCountry] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [company, setCompany] = useState('');
+  const [VAT_number, setVatNumber] = useState('');
+  const [address, setAddress] = useState('');
+  const [additional_address, setAdditionalAddress] = useState('');
+  const [postal_address, setPostalAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [phone, setPhone] = useState('');
+  const [shipping_method, setShippingMethod] = useState('');
+  const [mobile_no, setMobileNumber] = useState('');
+  const [comment, setComment] = useState('');
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('products')) || [];
+    console.log({items})
+    setProducts(items);
+  }, [])
+
+  const createOrder = (e) => {
+    e.preventDefault();
+    axios.post(`${API_URL}/order/create`, {firstName, lastName, company, VAT_number, address, additional_address, postal_address, city, country: selectedCountry, phone, shipping_method: 'Collection from BULLMAN showroom', mobile_no, comment, products })
+    .then((res) => {
+      console.log(res?.data)
+      localStorage.removeItem('products');
+    })
+    .catch((err) => {
+      console.log({err})
+    })
+  }
 
   const toggleDetails = () => {
     setIsOpen(!isOpen);
@@ -270,17 +304,21 @@ export default function Order() {
                   type="text"
                   id="fname"
                   name="fname"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   required
                   className="w-full h-10 outline-none border mt-2 px-4 hover:border-[#d1d1d1] hover:border-[2px]  "
                 />
               </div>
               <div className="my-3 pt-2">
-                <label htmlFor="fname">Name</label>
+                <label htmlFor="fname">Last name</label>
                 <br />
                 <input
                   type="text"
                   id="fname"
                   name="fname"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   className="w-full h-10 outline-none border mt-2 px-4 hover:border-[#d1d1d1] hover:border-[2px]  "
                 />
               </div>
@@ -291,6 +329,8 @@ export default function Order() {
                   type="text"
                   id="fname"
                   name="fname"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
                   className="w-full h-10 outline-none border mt-2 px-4 hover:border-[#d1d1d1] hover:border-[2px]  "
                 />
               </div>
@@ -301,6 +341,8 @@ export default function Order() {
                   type="number"
                   id="fname"
                   name="fname"
+                  value={VAT_number}
+                  onChange={(e) => setVatNumber(e.target.value)}
                   className="w-full h-10 outline-none border mt-2 px-4 hover:border-[#d1d1d1] hover:border-[2px]  "
                 />
               </div>
@@ -311,6 +353,8 @@ export default function Order() {
                   type="text"
                   id="fname"
                   name="fname"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                   className="w-full h-10 outline-none border mt-2 px-4 hover:border-[#d1d1d1] hover:border-[2px]  "
                 />
               </div>
@@ -321,6 +365,8 @@ export default function Order() {
                   type="text"
                   id="fname"
                   name="fname"
+                  value={additional_address}
+                  onChange={(e) => setAdditionalAddress(e.target.value)}
                   className="w-full h-10 outline-none border mt-2 px-4 hover:border-[#d1d1d1] hover:border-[2px]  "
                 />
               </div>
@@ -331,6 +377,8 @@ export default function Order() {
                   type="text"
                   id="fname"
                   name="fname"
+                  value={postal_address}
+                  onChange={(e) => setPostalAddress(e.target.value)}
                   className="w-full h-10 outline-none border mt-2 px-4 hover:border-[#d1d1d1] hover:border-[2px]  "
                 />
               </div>
@@ -341,6 +389,8 @@ export default function Order() {
                   type="text"
                   id="fname"
                   name="fname"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
                   className="w-full h-10 outline-none border mt-2 px-4 hover:border-[#d1d1d1] hover:border-[2px]  "
                 />
               </div>
@@ -366,6 +416,8 @@ export default function Order() {
                   type="number"
                   id="fname"
                   name="number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   className="w-full h-10 outline-none border mt-2 px-4 hover:border-[#d1d1d1] hover:border-[2px]  "
                 />
               </div>
@@ -398,7 +450,7 @@ export default function Order() {
               <div className="md:flex space-x-8 text-[16px] py-3  ">
                <div className="flex space-x-8 md:w-[65%] w-full" >
                 <input type="radio" name="" id="" className="flex items-start leading-[0px] " />
-                <Image src={img} className="h-[40px] w-[40px] " />
+                <Image alt="img" src={img} className="h-[40px] w-[40px] " />
                 <p className="md:w-[65%] text-[14px] ">
                   Collection from BULLMAN showroom
                 </p>
@@ -410,7 +462,7 @@ export default function Order() {
               <div className="md:flex space-x-8  text-[16px] py-3 ">
               <div className="flex space-x-8 md:w-[60%] w-full" >
                 <input type="radio" name="" id="" />
-                <Image src={img1} className="h-[40px] w-[40px] " />
+                <Image alt="img" src={img1} className="h-[40px] w-[40px] " />
                 <p className="md:w-[65%] text-[14px] ">DPD Relay Point</p>
                </div>
                 <p className="md:w-[30%] text-[14px] pt-1 md:px-0 px-4">Relay Point 24-72h</p>
@@ -420,7 +472,7 @@ export default function Order() {
               <div className="md:flex space-x-8  text-[16px] py-3 ">
               <div className="flex space-x-8 md:w-[58%] w-full  " >
                 <input type="radio" name="" id="" />
-                <Image src={img2} className="h-[40px] w-[40px] " />
+                <Image alt="img" src={img2} className="h-[40px] w-[40px] " />
                 <p className="md:w-[40%]  text-[14px] ">Home (Express)</p>
                 </div>
                 <p className="md:w-[30%] text-[14px] pt-1 md:px-0 px-4 ">2-3 days</p>
@@ -437,6 +489,8 @@ export default function Order() {
                   type="text"
                   id="fname"
                   name="fname"
+                  value={mobile_no}
+                  onChange={(e) => setMobileNumber(e.target.value)}
                   required
                   className="w-full h-12 outline-none border  px-4 hover:border-[#d1d1d1] hover:border-[2px]  "
                 />
@@ -452,6 +506,8 @@ export default function Order() {
                   type="text"
                   id="fname"
                   name="fname"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
                   required
                   className="w-full h-20 outline-none border  px-4 hover:border-[#d1d1d1] hover:border-[2px]  "
                 />
@@ -482,7 +538,7 @@ export default function Order() {
                     <p className="font-[500] text-[16px] ">
                       Bank Cards (CB, VISA, Mastercard, Amex, etc.)
                     </p>
-                    <Image src={img3} className="h-[20px] w-[33px] " />
+                    <Image alt="img" src={img3} className="h-[20px] w-[33px] " />
                   </div>
                 </p>
               </div>
@@ -555,7 +611,7 @@ export default function Order() {
                       them without reservation.
                     </p>
                   </div>
-                  <button className=" bg-[#c9c8c5] border-[2px] hover:border-[0px] mt-1  border-[black] text-[12px] py-[10px] px-[32px] text-white">
+                  <button onClick={createOrder} className=" bg-[#c9c8c5] border-[2px] hover:border-[0px] mt-1  border-[black] text-[12px] py-[10px] px-[32px] text-white">
                     Order
                   </button>
                 </div>
@@ -563,10 +619,10 @@ export default function Order() {
             </div>
           )}
         </div>
-       
-    <div className="bg-white md:w-[37%] w-full p-[28px]">
+       {products?.map((product) => (
+    <div key={product?._id} className="bg-white md:w-[37%] w-full p-[28px]">
       <div className="flex justify-between font-[400]">
-        <p className="">1 item</p>
+        <p className="">{products?.length} item</p>
         <p className="details-toggle cursor-pointer flex  " onClick={toggleDetails}>
           Check details <span className="icon pt-1">{isOpen ? <RxTriangleDown  /> : <RxTriangleUp  />}</span>
         </p>
@@ -575,18 +631,18 @@ export default function Order() {
         // cart details
         <div className="details-content mt-5 ">
 <div className="flex space-x-3 cursor-pointer py-3 " >
-  <div><Image src={img5} className="h-[100px] w-[100px] hover:scale-110 " /> </div>
+  <div><Image src={`${API_URL}/${product?.images[0]?.url}`} width={250} height={250} className="h-[100px] w-[100px] hover:scale-110 " /> </div>
   <div >
-    <p className="text-[12px] pt-2 " >Weight belt</p>
+    <p className="text-[12px] pt-2">{product?.name}</p>
     <div className="flex mt-2 " >
-      <p className="h-10 w-14 border-[1px] flex justify-center items-center " >1</p>
+      <p className="h-10 w-14 border-[1px] flex justify-center items-center " >{product?.orderQuantity}</p>
       <div>
       <RxTriangleUp className="h-5 w-7 border-[1px] "  />
       <RxTriangleDown className="h-5 w-7 border-[1px] "  />
       </div>
     </div>
   </div>
-    <div className="flex items-center text-[12px] text-gray-400 " >€15.00</div>
+    <div className="flex items-center text-[12px] text-gray-400 " >€{product?.retail_price_tax_excl?.toFixed(2)}</div>
 </div>
         </div>
       )}
@@ -599,15 +655,15 @@ export default function Order() {
                     </div>
                     <br />
                     <div className="flex justify-between " >
-                      <p className="font-[600] text-[15px] " >TOTAL PRICE)</p>
-                      <p className="text-[14px] " >€15.00</p>
+                      <p className="font-[600] text-[15px] " >TOTAL PRICE</p>
+                      <p className="text-[14px] " >€{product?.retail_price_tax_excl?.toFixed(2)}</p>
                   </div>
                   <div className="flex justify-between mt-1 " >
                       <p className="font-[600] text-[15px] " >Taxes included :</p>
-                      <p className="text-[14px] " >€2.50</p>
+                      <p className="text-[14px] " >€{product?.retail_price_tax_inc}</p>
                   </div>
     </div>
-
+  ))}
       </div>
       <br />
       <Most />
