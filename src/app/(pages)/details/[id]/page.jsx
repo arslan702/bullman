@@ -60,7 +60,7 @@ export default function Details({params}) {
   
     // Check if the product with the same ID already exists
     const existingProductIndex = existingProducts?.findIndex(
-      (item) => item?._id === product._id
+      (item) => item?._id === product?._id
     );
   
     if (existingProductIndex !== -1) {
@@ -95,7 +95,7 @@ export default function Details({params}) {
               <div className="flex flex-col cursor-pointer  ">
                 {/* Thumbnails */}
                 {product?.images?.map((image, index) => (
-                  <Image
+                  <img
                     key={index}
                     className="thumbnail"
                     src={`${API_URL}/${image?.url}`}

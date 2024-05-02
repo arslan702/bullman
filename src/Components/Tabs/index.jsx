@@ -105,12 +105,12 @@ const Tabs = () => {
             {products?.map((prod) => (
               <div key={prod?._id} onClick={() => handleClick(prod?._id)} className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
                 <div className="relative h-full ">
-                  <Image alt="img" src={`${API_URL}/${prod?.images[0]?.url}`} width={350} height={250} className="h-[250px] w-[350px] hover:opacity-0"/>
+                  <img alt="img" src={`${API_URL}/${prod?.images[0]?.url}`} className="h-[250px] w-[350px] hover:opacity-0"/>
                   {prod?.images[1]?.url && (
-                  <Image
+                  <img
                     src={`${API_URL}/${prod?.images[1]?.url}`}
                     alt="img"
-                    width={350} height={250}
+                    // width={350} height={250}
                     className="h-[250px] w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100  "
                   />
                   )}
