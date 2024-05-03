@@ -33,6 +33,9 @@ export default function RootLayout({ children }) {
         <Footer/>
       </body>
       <link rel="preconnect" href="https://fonts.googleapis.com"/>
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
+      <link href="https://fonts.googleapis.com/css2?family=Mada:wght@200..900&display=swap" rel="stylesheet"/>
+      <link rel="preconnect" href="https://fonts.googleapis.com"/>
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
       <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Jost:wght@700&display=swap" rel="stylesheet" />
     </html>

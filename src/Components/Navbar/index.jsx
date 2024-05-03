@@ -31,16 +31,16 @@ export default function Navbar() {
     setIsSubMenuOpen(false);
   };
   return (
-    <div className="pt-4 bg-black shadow-2xl  ">
-      <div className="md:flex  justify-between cursor-pointer md:pl-16 md:pr-20 px-4 ">
+    <div className="pt-4 bg-black shadow-2xl" style={{boxShadow: '0 0 10px 0 rgba(0, 0, 0, .5)'}}>
+      <div className="md:flex  justify-between cursor-pointer md:pl-16 md:pr-20 px-4">
         <div className="pl-2 mt-1 md:gap-2 ">
           <p>
             <a href="/" className="text-[35px] -tracking-tighter">
-              <Image src={img} className="h-[42px] w-[200px] md:pl-0 pl-5 " />
+              <Image src={img} className="h-[42px] w-[200px] md:pl-0 pl-5" />
             </a>
           </p>
         </div>
-        <div className="relative flex items-center md:mt-0 mt-1 ">
+        <div className="relative flex items-center md:mt-0 mt-1">
           <input
             type="text"
             placeholder="Search..."
@@ -57,8 +57,8 @@ export default function Navbar() {
         </div>
         <div className="md:flex  space-x-5  text-white md:mt-0 mt-2 ">
           <div className="text-[12px] md:block hidden ">
-            <p className="bg-[#315593] px-2 py-1">FREE DELIVERY FROM 500€ </p>
-            <p className="text-[#315593]">OUR SHIPPING COSTS : HERE</p>{" "}
+            <p className="bg-[#315593] px-2 py-1 text-[#ffffff]">LIVRAISON OFFERTE À PARTIR DE 500€ </p>
+            <p className="text-[#315593]">ET SUR UNE SÉLECTION D'ARTICLES : ICI</p>{" "}
           </div>
           <div className=" text-[18px] font-light flex justify-around md:space-x-6 space-x-5 mt-4 pb-3 text-white">
             {toggle ? (
@@ -80,14 +80,14 @@ export default function Navbar() {
         </div>
       </div>
       {/* 2nd menu bar */}
-      <div className="max-w-[1240px] mt-2 mx-auto text-white  px-4  ">
+      <div className="max-w-[1440px] mt-2 mx-auto text-white px-8">
         <div className="md:flex hidden gap-12 ">
           <ul className="flex  gap-9 items-center cursor-pointer text-[14px] font-[700]">
             {/* <button className="bg-[#325897] h-12 px-5 py-3 hover:bg-white hover:text-black flex items-center justify-center font-bold " >SHOP</button> */}
 
             <div className="relative">
               <button
-                className="bg-[#325897] h-12 px-5 py-3 flex items-center justify-center font-bold"
+                className="bg-[#325897] text-[#ffffff] h-12 px-5 py-3 flex items-center justify-center font-bold"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
@@ -127,16 +127,16 @@ export default function Navbar() {
               )}
             </div>
 
-            <li className="hover:text-[#2A4A80] ">STRENGTH & DUMBBELL</li>
-            <li className="hover:text-[#2A4A80] ">A PHYSICAL TRAINING </li>
-            <li className="hover:text-[#2A4A80] ">GYMNASTIC</li>
-            <li className="hover:text-[#2A4A80] ">RIGS & RACKS</li>
-            <li className="hover:text-[#2A4A80] ">DISCS</li>
-            <li className="hover:text-[#2A4A80] ">BARS</li>
-            <li className="hover:text-[#2A4A80] ">MACHINES & ERGOS </li>
+            <li className="hover:text-[#2A4A80] mx-[10px]">FORCE & HALTÉRO</li>
+            <li className="hover:text-[#2A4A80] mx-[10px]">PREPARATION PHYSIQUE </li>
+            <li className="hover:text-[#2A4A80] mx-[10px]">GYMNASTIQUE</li>
+            <li className="hover:text-[#2A4A80] mx-[10px]">RIGS & RACKS</li>
+            <li className="hover:text-[#2A4A80] mx-[10px]">DISQUES</li>
+            <li className="hover:text-[#2A4A80] mx-[10px]">BARRES</li>
+            <li className="hover:text-[#2A4A80] mx-[10px]">MACHINES & ERGOS </li>
           </ul>
           <button className="bg-[#325897] h-12 font-bold text-[13px] px-3 py-3 flex items-center justify-center ">
-            PACKAGES
+            PACKS
           </button>
         </div>
         {/* responsive  */}
@@ -146,37 +146,37 @@ export default function Navbar() {
           }`}
         >
           <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
-            STRENGTH & DUMBBELL
+            FORCE & HALTÉRO
           </li>
           <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
-            A PHYSICAL TRAINING
+            PREPARATION PHYSIQUE
           </li>
           <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
-            GYMNASTIC
+            GYMNASTIQUE
           </li>
           <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
             RIGS & RACKS
           </li>
           <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
-            DISCS
+            DISQUES
           </li>
           <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
-            BARS
+            BARRES
           </li>
           <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
             MACHINES & ERGOS
           </li>
           <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
-            BENCHES
+            BANCS
           </li>
           <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
-            ACCESORIES
+            ACCESSOIRES
           </li>
           <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
-            GIFT CARDS
+            CARTES-CADEAUX
           </li>
           <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
-            DUMBLES
+            HALTERES
           </li>
         </ul>
       </div>

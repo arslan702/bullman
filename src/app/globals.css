@@ -16,6 +16,20 @@
   }
 }
 
+.mada-font {
+  font-family: "Mada", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 501 !important;
+  font-style: normal;
+}
+
+.mada-bold {
+  font-family: "Mada", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 701 !important;
+  font-style: normal;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background-color: #F8F8F8;

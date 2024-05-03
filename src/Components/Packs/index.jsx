@@ -100,37 +100,37 @@ export default function Packs() {
   return (
     <div className="md:px-12 md:pt-10 mb-3">
       <div>
-        <p className="text-[20px] md:max-w-40 max-w-48 border-black pb-2 border-b-[2px]">
-          <b>NOS PACKS</b>{" "}
+        <p style={{letterSpacing: '3px'}} className="mada-bold text-[1.5em] leading-[1.5em] md:max-w-40 max-w-48 border-black pb-2 border-b-[2px]">
+          NOS PACKS{" "}
         </p>
       </div>
       <Slider {...settings} >
         <div className="px-4  overflow-hidden ">
           <Image src={img} className="w-full transition-all duration-300 cursor-pointer hover:scale-110 h-[270px]" />
-          <p className="text-[13px]">WOMEN'S COMPETITION PACK 150kg + bar</p>
-          <p className="pt-2">
-            <b>€654.17</b>{" "}
+          <p className="mada-font text-[14px] font-[500] text-[#000]">WOMEN'S COMPETITION PACK 150kg + bar</p>
+          <p className="text-[14px] pt-2 font-[700] leading-[1.2em] text-[#000]">
+            654.17{' '}€{" "}
           </p>
         </div>
         <div className="px-4 overflow-hidden">
           <Image src={img1} className="w-full transition-all duration-300 cursor-pointer hover:scale-110 h-[270px]" />
-          <p className="text-[13px]">WOMEN'S COMPETITION PACK 150kg + bar</p>
-          <p className="pt-2">
-            <b>€654.17</b>{" "}
+          <p className="mada-font text-[14px] font-[500] text-[#000]">WOMEN'S COMPETITION PACK 150kg + bar</p>
+          <p className="text-[14px] pt-2 font-[700] leading-[1.2em] text-[#000]">
+            654.17{' '}€{" "}
           </p>
         </div>
         <div className="px-4 overflow-hidden">
           <Image src={img2} className="w-full transition-all duration-300 cursor-pointer hover:scale-110 h-[270px]" />
-          <p className="text-[13px]">MEN COMPETITION PACK 100kg</p>
-          <p className="pt-2">
-            <b>€654.17</b>{" "}
+          <p className="mada-font text-[14px] font-[500] text-[#000]">MEN COMPETITION PACK 100kg</p>
+          <p className="text-[14px] pt-2 font-[700] leading-[1.2em] text-[#000]">
+            654.17{' '}€{" "}
           </p>
         </div>
         <div className="px-4 overflow-hidden">
           <Image src={img3} className="w-full transition-all duration-300 cursor-pointer hover:scale-110 h-[270px]" />
-          <p className="text-[13px]"> COMPETITION PACK </p>
-          <p className="pt-2">
-            <b>€654.17</b>{" "}
+          <p className="mada-font text-[14px] font-[500] text-[#000]"> COMPETITION PACK </p>
+          <p className="text-[14px] pt-2 font-[700] leading-[1.2em] text-[#000]">
+            654.17{' '}€{" "}
           </p>
         </div>
       </Slider>

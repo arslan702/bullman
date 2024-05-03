@@ -43,13 +43,13 @@ const Tabs = () => {
     <div className=" rounded-lg md:px-12 pt-10 ">
       <div className="md:flex md:justify-between md:px-0 px-6  ">
         <div>
-          <p className="text-[20px] md:max-w-72 max-w-48 border-black pb-2  border-b-[2px] ">
-            <b>NOTRE SÉLECTION</b>{" "}
+          <p style={{letterSpacing: '3px'}} className="mada-bold text-[1.5em] leading-[1.5em] md:max-w-72 max-w-48 border-black pb-2  border-b-[2px] ">
+            NOTRE SÉLECTION{" "}
           </p>
         </div>
         <div className="md:flex md:space-x-3 md:py-0 py-2 ">
           <button
-            className={`w-full p-2 text-[14px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
+            className={`mada-font w-full p-2 text-[14px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
               activeTab === 1 ? "bg-[#E6EAEF] " : "bg-transparent "
             }`}
             onClick={() => handleTabClick(1)}
@@ -57,7 +57,7 @@ const Tabs = () => {
             BESTSELLERS
           </button>
           <button
-            className={`w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
+            className={`mada-font w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
               activeTab === 2 ? "bg-gray-200" : "bg-transparent "
             }`}
             onClick={() => handleTabClick(2)}
@@ -65,7 +65,7 @@ const Tabs = () => {
             DUMBBELLS&KETTLEBELLS
           </button>
           <button
-            className={`w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
+            className={`mada-font w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
               activeTab === 3 ? "bg-gray-200" : "bg-transparent "
             }`}
             onClick={() => handleTabClick(3)}
@@ -73,7 +73,7 @@ const Tabs = () => {
             PLATES
           </button>
           <button
-            className={`w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
+            className={`mada-font w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
               activeTab === 4 ? "bg-gray-200" : "bg-transparent "
             }`}
             onClick={() => handleTabClick(4)}
@@ -81,7 +81,7 @@ const Tabs = () => {
             BAREBELLS
           </button>
           <button
-            className={`w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
+            className={`mada-font w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
               activeTab === 5 ? "bg-gray-200" : "bg-transparent "
             }`}
             onClick={() => handleTabClick(5)}
@@ -89,7 +89,7 @@ const Tabs = () => {
             MACHINE&ERGOS
           </button>
           <button
-            className={`w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
+            className={`mada-font w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
               activeTab === 6 ? "bg-gray-200" : "bg-transparent "
             }`}
             onClick={() => handleTabClick(6)}
@@ -115,8 +115,8 @@ const Tabs = () => {
                   />
                   )}
                 </div> 
-                <p className="text-[12px] font-[500]">{prod?.name}</p> 
-                <p className="text-[12px] pt-2 font-[500]">€{prod?.retail_price_tax_inc}</p>            
+                <p className="mada-font text-[14px] font-[500] text-[#000]">{prod?.name}</p> 
+                <p className="text-[14px] pt-2 font-[700] leading-[1.2em] text-[#000]">{prod?.retail_price_tax_inc}{' '}€</p>            
               </div>
              ))}
               {/* <div className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">

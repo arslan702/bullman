@@ -79,7 +79,7 @@ export default function Details({params}) {
   return (
     <div className="md:px-16 px-4 pt-3 py-3 mb-5 bg-[#FFFFFF]  ">
       {/* Thumbnails */}
-      <div className="flex font-normal md:text-[12px] text-[11px] space-x-2 cursor-pointer px-4 ">
+      <div className="flex font-normal md:text-[12px] text-[11px] space-x-2 cursor-pointer px-4 text-[#000]">
         <p>Welcome</p>
         <MdArrowRightAlt className="mt-1" />
         <p> CROSS TRAINING </p>
@@ -121,38 +121,38 @@ export default function Details({params}) {
               </div>
             </div>
             {/* description details  */}
-            <div className="flex justify-between   ">
+            <div className="flex justify-between w-[350px] md:w-[500px] ml-[30px]">
               <button
-                className={` md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
+                className={`text-[#000] md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
                   activeTab === 1 ? " border-b-2 " : " "
                 }`}
                 onClick={() => handleTabClick(1)}
               >
-                DESCRIPTION
+                Description
               </button>
               <button
-                className={`  md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
+                className={`text-[#000] md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
                   activeTab === 2 ? " border-b-2 " : " "
                 }`}
                 onClick={() => handleTabClick(2)}
               >
-                GURANTEE
+                Garantie BULLMAN
               </button>
               <button
-                className={`  md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
+                className={`text-[#000] md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
                   activeTab === 3 ? " border-b-2 " : " "
                 }`}
                 onClick={() => handleTabClick(3)}
               >
-                Shipping
+                Expedition
               </button>
               <button
-                className={`  md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
+                className={`text-[#000] md:text-[14px] text-[10px] font-[600] md:border-b-[1px] border-b-[1px]  md:border-transparent border-black  hover:border-[#315593] hover:border-b-[2px] ${
                   activeTab === 4 ? " border-b-2 " : " "
                 }`}
                 onClick={() => handleTabClick(4)}
               >
-                Secure Payment
+                Paiement securise
               </button>
             </div>
             <br />
@@ -195,41 +195,51 @@ export default function Details({params}) {
               )}
               {activeTab === 2 && 
               <div className="px-2 " >
-               <p><b>LIFETIME WARRANTY</b> </p> 
+               <p className="mada-font text-[#000000]">GARANTIE À VIE</p> 
                <br />
-               <p className="font-[400] " >All our accessories and small equipment are guaranteed for 2 years. <br />
-Our bars, flat machines and racks are guaranteed for 5 years.</p>
+               <p className="mada-font text-[#000000]">Tous nos accessoires et petits matériels sont garanties 2 ans. <br />
+                  Nos barres, plates machines et racks sont garanties 5ans.</p>
                 </div>}
               {activeTab === 3 && 
               <div>
-                <p><b>SHIPPING</b></p>
+                  <p className="mada-font text-[#000000]">EXPEDITION</p>
                 <br />
-                <p className=" font-[600] " >For any order over €500.00 we offer free shipping costs.</p>
+                  <p className="mada-font text-[#000000]">A l'exception des dalles, des racks, de certaines barres et des machines qui sont soumis à un forfait.</p>
                 <br />
-                <p className="text-[14px] font-[500]  " >With the exception of slabs, racks, certain bars and machines which are subject to a fixed price.
+                  <p className="mada-font text-[#000000]" >Le transport dit "DOMICILE BULLMAN" est au choix de Bullman Equipment.
 
-Transport known as “BULLMAN HOME” is at the choice of Bullman Equipment. <br />
+                    Transport known as “BULLMAN HOME” is at the choice of Bullman Equipment. <br />
 
-When products are in stock, we generally ship within 48 hours. <br />
+                    Lorsque les produits sont en stock, nous expédions généralement sous 48h.<br />
 
-The contribution to shipping costs is calculated based on the price of the basket, the weight and the selected carrier.</p>
+                    La participation aux frais de port est calculée en fonction du prix du panier, du poids et du transporteur sélectionné.</p>
+                    <br/>
+                  <p className="mada-font text-[#000000]">
+                    Règles spécifiques :<br/>
+                    -Les packs font l'objet d'un forfait de 59,90€TTC.<br/>
+                    -L'expédition de dalles fait l'objet d'un forfait peu importe la quantité : 59,90€ TTC.<br/>
+                    -Les machines font l'objet d'un forfait par machine de 59,90€.<br/>
+                    -L'expédition de racks est soumise à une surcharge de 59,90€ par commande.<br/>
+                    -Nos barres olympiques (sauf les barres d'haltères) font l'objet d'un forfait de 30€ TTC par barre pour les commandes en deçà de 500€.
+                  </p>
                 </div>}
               {activeTab === 4 && <div className="px-2 "  >
-                <p className="font-[500] " >SECURE PAYMENT</p>
+                <p className="mada-font text-[#000000]">PAIEMENT SÉCURISÉ</p>
                 <br />
-                <p className="text-[14px] font-[500] " >We offer secure, SSL encrypted payment.</p> <br />
-                <p className="font-[600]" >Cash  : <br /> -Bank cards, <br /> -Instant transfer, <br /> -Apple Pay. </p>
+                <p className="mada-font text-[14px] text-[#000000]">Nous vous proposons un paiement sécurisé et crypté en SSL.</p> <br />
+                <p className="mada-font text-[#000000]" >Comptant : <br /> -Cartes bancaires, <br /> -Virement instantané, <br /> -Apple Pay. </p><br/>
+                <p className="mada-font text-[#000000]" >En plusieurs fois : <br /> -KLARNA 3x, <br /> -KLARNA 10x. </p>
                 </div>}
             </div>
           </div>
         </div>
         {/* product details */}
         <div className="md:w-[40%]  h-auto py-4  p-4 md:px-12 px-2 ">
-          <p className="text-[22px] font-[600] max-w-96 pt-2 ">
+          <p className="mada-font text-[33px] font-[600] max-w-96 pt-2 leading-[1.2em] text-[#000000]">
             {" "}
             {product?.name}{" "}
           </p>
-          <i className="text-[12px] ">Shipped within 48 hours</i>
+          <i className="text-[12px] text-[#000000]">Shipped within 48 hours</i>
 
           {/* Weight details */}
           {/* <div>
@@ -351,19 +361,19 @@ The contribution to shipping costs is calculated based on the price of the baske
           <br />
           {/* <div className="border-[1px] border-[#9A9A9A] "> */}
           <div className="flex md:gap-2 gap-1 items-center cursor-pointer">
-              <p onClick={() => setQuantity(quantity - 1)} className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[20px]">
+              <p onClick={() => setQuantity(quantity - 1)} className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[20px] text-[#00000]">
                 -
               </p>
-              <p className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[14px]">
+              <p className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[14px] text-[#00000]">
                 {quantity}
               </p>
-              <p onClick={() => setQuantity(quantity + 1)} className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[20px]">
+              <p onClick={() => setQuantity(quantity + 1)} className="h-8 w-10 border-[1px] border-[black] flex justify-center items-center text-[20px] text-[#00000]">
                 +
               </p>
             </div>
           {/* </div> */}
           <br />
-          <div className=" text-white cursor-pointer text-center py-2 bg-[#315593] hover:bg-gradient-to-b from-blue-700 to-blue-900">
+          <div className=" text-white cursor-pointer text-center py-2 bg-[#315593] text-[#ffffff] hover:bg-gradient-to-b from-blue-700 to-blue-900">
             {" "}
             <button onClick={addToCart(product, quantity)}>ADD TO CART</button>{" "}
           </div>
