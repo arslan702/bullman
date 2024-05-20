@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MdArrowRightAlt } from "react-icons/md";
 import { FaAngleDown, FaAngleUp, FaWeightHanging } from "react-icons/fa";
 import Image from "next/image";
@@ -8,21 +8,40 @@ import img from "../../../../Images/29.webp";
 import img1 from "../../../../Images/30.webp";
 import img2 from "../../../../Images/31.webp";
 import img3 from "../../../../Images/32.webp";
-
+import { useRouter, useSearchParams } from "next/navigation";
+import axios from "axios";
+import { API_URL } from "@/config";
 
 export default function category() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  let param = searchParams.get('category');
+  console.log({param});
   const [leftWeight, setLeftWeight] = useState(0); // State for the weight on the left side
   const totalWeight = 95; // Total weight range, assuming 0kg - 95kg
+  const [products, setProducts] = useState([]);
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const [selectedPageSize, setSelectedPageSize] = useState(12); // Default selected page size
   const [isSelectedItemOpen, setIsSelectedItemOpen] = useState(true); // Submenu open by default
+
+  useEffect(() => {
+    axios.get(`${API_URL}/product/get/category/${param}?page=1&limit=12`)
+    .then((res) => {
+      setProducts(res?.data?.products)
+    })
+    .catch((err) => {
+      console.log({err})
+    })
+  },[param])
+
+  console.log({products})
 
   const toggleSelectedItem = () => {
     setIsSelectedItemOpen(!isSelectedItemOpen);
   };
 
   const closeSelectedItem = () => {
-    setIsSelectedItem(false);
+    setIsSelectedItemOpen(false);
   };
 
   const handlePageSizeClick = (size) => {
@@ -223,48 +242,14 @@ export default function category() {
 
           {/* Images  */}
           <br />
-          <div className="grid md:grid-cols-4 grid-cols-2 mt-3 gap-3 cursor-pointer ">
-            <div className=" ">
-              <Image src={img} className=" flex justify-center flex-col items-center " />
-              <p className="text-[12px] font-medium pt-2 " >COMPETITION BUMPERS - IWF standard (pair)</p>
-              <p className="text-[14px] font-semibold " >€116.67</p>
+          <div className="grid md:grid-cols-4 grid-cols-2 mt-3 gap-3 cursor-pointer">
+            {products?.map((product) => (
+            <div key={product?._id}>
+              <img src={`${API_URL}/${product?.images[0]?.url}`} alt='img' className="flex justify-center flex-col items-center"/>
+              <p className="text-[12px] font-medium pt-2">{product?.name}</p>
+              <p className="text-[14px] font-semibold">€{product?.retail_price_tax_inc}</p>
             </div>
-            <div className=" ">
-              <Image src={img1} className=" flex justify-center flex-col items-center " />
-              <p className="text-[12px] font-medium pt-2 " >COMPETITION BUMPERS - IWF standard (pair)</p>
-              <p className="text-[14px] font-semibold " >€116.67</p>
-            </div>
-            <div className=" ">
-              <Image src={img2} className=" flex justify-center flex-col items-center " />
-              <p className="text-[12px] font-medium  pt-2" >COMPETITION BUMPERS - IWF standard (pair)</p>
-              <p className="text-[14px] font-semibold " >€116.67</p>
-            </div>
-            <div className=" ">
-              <Image src={img3} className=" flex justify-center flex-col items-center " />
-              <p className="text-[12px] font-medium pt-2" >COMPETITION BUMPERS - IWF standard (pair)</p>
-              <p className="text-[14px] font-semibold " >€116.67</p>
-            </div>
-            <div className=" ">
-              <Image src={img} className=" flex justify-center flex-col items-center " />
-              <p className="text-[12px] font-medium pt-2 " >COMPETITION BUMPERS - IWF standard (pair)</p>
-              <p className="text-[14px] font-semibold " >€116.67</p>
-            </div>
-            <div className=" ">
-              <Image src={img2} className=" flex justify-center flex-col items-center " />
-              <p className="text-[12px] font-medium pt-2 " >COMPETITION BUMPERS - IWF standard (pair)</p>
-              <p className="text-[14px] font-semibold " >€116.67</p>
-            </div>
-            <div className=" ">
-              <Image src={img3} className=" flex justify-center flex-col items-center " />
-              <p className="text-[12px] font-medium  pt-2" >COMPETITION BUMPERS - IWF standard (pair)</p>
-              <p className="text-[14px] font-semibold " >€116.67</p>
-            </div>
-            <div className=" ">
-              <Image src={img} className=" flex justify-center flex-col items-center " />
-              <p className="text-[12px] font-medium pt-2" >COMPETITION BUMPERS - IWF standard (pair)</p>
-              <p className="text-[14px] font-semibold " >€116.67</p>
-            </div>
-
+            ))}
           </div>
         </div>
       </div>

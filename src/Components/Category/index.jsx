@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import img from "../../../Images/1.jpg";
@@ -8,8 +9,14 @@ import img4 from "../../../Images/5.jpg";
 import img5 from "../../../Images/6.jpg";
 import img6 from "../../../Images/7.jpg";
 import img7 from "../../../Images/8.jpg";
+import { useRouter } from "next/navigation";
 
 export default function Category() {
+  const router = useRouter();
+
+  const handleClick = (category) => {
+    router.push(`/category?category=${encodeURIComponent(category)}`)
+  } 
   return (
     <div className="md:px-12 pt-10 ">
       <p style={{letterSpacing: '3px', width: '25%'}} className="mada-bold text-[1.5em] leading-[1.5em] pb-[0.1px] border-b-[2px] border-black">
@@ -18,35 +25,35 @@ export default function Category() {
       </p>
       <br />
       <div className="grid md:grid-cols-4 md:px-0 px-8 ">
-        <div className="text-center font-[700] ">
+        <div className="text-center font-[700] cursor-pointer" onClick={() => handleClick('STRENGTH & WEIGHTLIFTING')}>
           <Image src={img} />
           <p className="mada-bold text-[16px] leading-[1.5em]">FORCE & HALTÉRO</p>
         </div>
-        <div className="text-center font-[700] ">
+        <div className="text-center font-[700] cursor-pointer" onClick={() => handleClick('A PHYSICAL TRAINING')}>
           <Image src={img1} />
           <p className="mada-bold text-[16px] leading-[1.5em]">PRÉPARATION PHYSIQUE</p>
         </div>
-        <div className="text-center font-[700] ">
+        <div className="text-center font-[700] cursor-pointer" onClick={() => handleClick('GYMNASTIC')}>
           <Image src={img2} />
           <p className="mada-bold text-[16px] leading-[1.5em]">GYMNASTIQUE</p>
         </div>
-        <div className="text-center font-[700] ">
+        <div className="text-center font-[700] cursor-pointer" onClick={() => handleClick('Rigs & Racks')}>
           <Image src={img3} />
           <p className="mada-bold text-[16px] leading-[1.5em]">RIGS & RACKS</p>
         </div>
-        <div className="text-center font-[700] ">
+        <div className="text-center font-[700] cursor-pointer" onClick={() => handleClick('PLATES')}>
           <Image src={img4} />
           <p className="mada-bold text-[16px] leading-[1.5em]">DISQUES</p>
         </div>
-        <div className="text-center font-[700] ">
+        <div className="text-center font-[700] cursor-pointer" onClick={() => handleClick('BAREBELLS')}>
           <Image src={img5} />
           <p className="mada-bold text-[16px] leading-[1.5em]">BARRES</p>
         </div>
-        <div className="text-center font-[700] ">
+        <div className="text-center font-[700] cursor-pointer" onClick={() => handleClick('HOMEGYM')}>
           <Image src={img6} />
           <p className="mada-bold text-[16px] leading-[1.5em]">HOMEGYM</p>
         </div>
-        <div className="text-center font-[700] ">
+        <div className="text-center font-[700] cursor-pointer" onClick={() => handleClick('Packs')}>
           <Image src={img7} />
           <p className="mada-bold text-[16px] leading-[1.5em]">PACKS</p>
         </div>

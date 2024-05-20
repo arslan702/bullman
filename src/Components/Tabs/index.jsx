@@ -18,6 +18,11 @@ const Tabs = () => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(1);
   const [products, setProducts] = useState([]);
+  const [dumbells, setDumbells] = useState([]);
+  const [plates, setPlates] = useState([]);
+  const [barebells, setBarebells] = useState([]);
+  const [machines, setMachines] = useState([]);
+  const [shipping, setShipping] = useState([]);
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
@@ -26,7 +31,45 @@ const Tabs = () => {
   useEffect(() => {
     axios.get(`${API_URL}/product/get`)
     .then((res) => {
-      setProducts(res?.data)
+      setProducts(res?.data?.products)
+    })
+    .catch((err) => {
+      console.log({err})
+    })
+    const keetle= 'DUMBBELLS & KETTLEBELLS'
+    axios.get(`${API_URL}/product/get/category/${keetle}?page=1&limit=8`)
+    .then((res) => {
+      setDumbells(res?.data?.products)
+    })
+    .catch((err) => {
+      console.log({err})
+    })
+    axios.get(`${API_URL}/product/get/category/PLATES?page=1&limit=8`)
+    .then((res) => {
+      setPlates(res?.data?.products);
+    })
+    .catch((err) => {
+      console.log({err})
+    })
+    axios.get(`${API_URL}/product/get/category/BAREBELLS?page=1&limit=8`)
+    .then((res) => {
+      setBarebells(res?.data?.products);
+    })
+    .catch((err) => {
+      console.log({err})
+    })
+    const machines = 'MACHINES & ERGOS';
+    axios.get(`${API_URL}/product/get/category/${machines}?page=1&limit=8`)
+    .then((res) => {
+      setMachines(res?.data?.products);
+    })
+    .catch((err) => {
+      console.log({err})
+    })
+    const shipping = 'FREE SHIPPING';
+    axios.get(`${API_URL}/product/get/category/${shipping}?page=1&limit=8`)
+    .then((res) => {
+      setShipping(res?.data?.products);
     })
     .catch((err) => {
       console.log({err})
@@ -62,7 +105,7 @@ const Tabs = () => {
             }`}
             onClick={() => handleTabClick(2)}
           >
-            DUMBBELLS&KETTLEBELLS
+            HALTERES & KETTLEBELLS
           </button>
           <button
             className={`mada-font w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
@@ -70,7 +113,7 @@ const Tabs = () => {
             }`}
             onClick={() => handleTabClick(3)}
           >
-            PLATES
+            DISQUES
           </button>
           <button
             className={`mada-font w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
@@ -78,7 +121,7 @@ const Tabs = () => {
             }`}
             onClick={() => handleTabClick(4)}
           >
-            BAREBELLS
+            BARRES
           </button>
           <button
             className={`mada-font w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
@@ -86,7 +129,7 @@ const Tabs = () => {
             }`}
             onClick={() => handleTabClick(5)}
           >
-            MACHINE&ERGOS
+            MACHINES & ERGOS
           </button>
           <button
             className={`mada-font w-full p-2 text-[14px] font-[600] md:border-b-[2px] border-b-[1px]  md:border-transparent border-black hover:border-[#315593] hover:border-b-[2px] ${
@@ -94,7 +137,7 @@ const Tabs = () => {
             }`}
             onClick={() => handleTabClick(6)}
           >
-            FREESHIPPING
+            LIVRAISON OFFERTE
           </button>
         </div>
       </div>
@@ -102,7 +145,7 @@ const Tabs = () => {
         {activeTab === 1 && (
           <div>
             <div className="grid md:grid-cols-4 grid-cols-2 cursor-pointer px-4 ">
-            {products?.map((prod) => (
+            {products?.length && products?.map((prod) => (
               <div key={prod?._id} onClick={() => handleClick(prod?._id)} className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
                 <div className="relative h-full ">
                   <img alt="img" src={`${API_URL}/${prod?.images[0]?.url}`} className="h-[250px] w-[350px] hover:opacity-0"/>
@@ -206,11 +249,121 @@ const Tabs = () => {
             </div>
           </div>
         )}
-        {activeTab === 2 && <div>Content for Tab 2</div>}
-        {activeTab === 3 && <div>Content for Tab 3</div>}
-        {activeTab === 4 && <div>Content for Tab 3</div>}
-        {activeTab === 5 && <div>Content for Tab 3</div>}
-        {activeTab === 6 && <div>Content for Tab 3</div>}
+        {activeTab === 2 && (
+          <div>
+          <div className="grid md:grid-cols-4 grid-cols-2 cursor-pointer px-4 ">
+          {dumbells?.length && dumbells?.map((prod) =>  (
+            <div key={prod?._id} onClick={() => handleClick(prod?._id)} className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+              <div className="relative h-full ">
+                <img alt="img" src={`${API_URL}/${prod?.images[0]?.url}`} className="h-[250px] w-[350px] hover:opacity-0"/>
+                {prod?.images[1]?.url && (
+                <img
+                  src={`${API_URL}/${prod?.images[1]?.url}`}
+                  alt="img"
+                  // width={350} height={250}
+                  className="h-[250px] w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100  "
+                />
+                )}
+              </div> 
+              <p className="mada-font text-[14px] font-[500] text-[#000]">{prod?.name}</p> 
+              <p className="text-[14px] pt-2 font-[700] leading-[1.2em] text-[#000]">{prod?.retail_price_tax_inc}{' '}€</p>            
+            </div>
+           ))}
+          </div>
+        </div>
+        )}
+        {activeTab === 3 && (
+          <div>
+          <div className="grid md:grid-cols-4 grid-cols-2 cursor-pointer px-4 ">
+          {plates?.length && plates?.map((prod) => (
+            <div key={prod?._id} onClick={() => handleClick(prod?._id)} className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+              <div className="relative h-full ">
+                <img alt="img" src={`${API_URL}/${prod?.images[0]?.url}`} className="h-[250px] w-[350px] hover:opacity-0"/>
+                {prod?.images[1]?.url && (
+                <img
+                  src={`${API_URL}/${prod?.images[1]?.url}`}
+                  alt="img"
+                  // width={350} height={250}
+                  className="h-[250px] w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100  "
+                />
+                )}
+              </div> 
+              <p className="mada-font text-[14px] font-[500] text-[#000]">{prod?.name}</p> 
+              <p className="text-[14px] pt-2 font-[700] leading-[1.2em] text-[#000]">{prod?.retail_price_tax_inc}{' '}€</p>            
+            </div>
+           ))}
+          </div>
+        </div>
+        )}
+        {activeTab === 4 && (
+          <div>
+          <div className="grid md:grid-cols-4 grid-cols-2 cursor-pointer px-4 ">
+          {barebells?.length && barebells?.map((prod) => (
+            <div key={prod?._id} onClick={() => handleClick(prod?._id)} className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+              <div className="relative h-full ">
+                <img alt="img" src={`${API_URL}/${prod?.images[0]?.url}`} className="h-[250px] w-[350px] hover:opacity-0"/>
+                {prod?.images[1]?.url && (
+                <img
+                  src={`${API_URL}/${prod?.images[1]?.url}`}
+                  alt="img"
+                  // width={350} height={250}
+                  className="h-[250px] w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100  "
+                />
+                )}
+              </div> 
+              <p className="mada-font text-[14px] font-[500] text-[#000]">{prod?.name}</p> 
+              <p className="text-[14px] pt-2 font-[700] leading-[1.2em] text-[#000]">{prod?.retail_price_tax_inc}{' '}€</p>            
+            </div>
+           ))}
+          </div>
+        </div>
+        )}
+        {activeTab === 5 && (
+          <div>
+          <div className="grid md:grid-cols-4 grid-cols-2 cursor-pointer px-4 ">
+          {machines && machines?.map((prod) => (
+            <div key={prod?._id} onClick={() => handleClick(prod?._id)} className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100 ">
+              <div className="relative h-full ">
+                <img alt="img" src={`${API_URL}/${prod?.images[0]?.url}`} className="h-[250px] w-[350px] hover:opacity-0"/>
+                {prod?.images[1]?.url && (
+                <img
+                  src={`${API_URL}/${prod?.images[1]?.url}`}
+                  alt="img"
+                  // width={350} height={250}
+                  className="h-[250px] w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100  "
+                />
+                )}
+              </div> 
+              <p className="mada-font text-[14px] font-[500] text-[#000]">{prod?.name}</p> 
+              <p className="text-[14px] pt-2 font-[700] leading-[1.2em] text-[#000]">{prod?.retail_price_tax_inc}{' '}€</p>            
+            </div>
+           ))}
+          </div>
+        </div>
+        )}
+        {activeTab === 6 && (
+          <div>
+          <div className="grid md:grid-cols-4 grid-cols-2 cursor-pointer px-4 ">
+          {shipping?.length && shipping?.map((prod) => (
+            <div key={prod?._id} onClick={() => handleClick(prod?._id)} className="md:w-[100%] sm:w-[100%] w-[100%] mx-auto h-[315px] mt-1 mb-16 relative inline-block hover:opacity-100">
+              <div className="relative h-full ">
+                <img alt="img" src={`${API_URL}/${prod?.images[0]?.url}`} className="h-[250px] w-[350px] hover:opacity-0"/>
+                {prod?.images[1]?.url && (
+                <img
+                  src={`${API_URL}/${prod?.images[1]?.url}`}
+                  alt="img"
+                  // width={350} height={250}
+                  className="h-[250px] w-full absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100"
+                />
+                )}
+              </div> 
+              <p className="mada-font text-[14px] font-[500] text-[#000]">{prod?.name}</p> 
+              <p className="text-[14px] pt-2 font-[700] leading-[1.2em] text-[#000]">{prod?.retail_price_tax_inc}{' '}€</p>            
+            </div>
+           ))}
+          </div>
+        </div>
+        )}
       </div>
     </div>
   );

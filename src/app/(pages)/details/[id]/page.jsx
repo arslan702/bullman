@@ -55,6 +55,10 @@ export default function Details({params}) {
   };
 
   function addToCart(product, quantity) {
+    if (typeof localStorage === 'undefined') {
+      console.error('localStorage is not available.');
+      return;
+    }
     // Get existing products from localStorage
     let existingProducts = JSON?.parse(localStorage?.getItem('products')) || [];
   
@@ -75,7 +79,6 @@ export default function Details({params}) {
     localStorage.setItem('products', JSON.stringify(existingProducts));
   }
   
-
   return (
     <div className="md:px-16 px-4 pt-3 py-3 mb-5 bg-[#FFFFFF]  ">
       {/* Thumbnails */}
@@ -375,7 +378,7 @@ export default function Details({params}) {
           <br />
           <div className=" text-white cursor-pointer text-center py-2 bg-[#315593] text-[#ffffff] hover:bg-gradient-to-b from-blue-700 to-blue-900">
             {" "}
-            <button onClick={addToCart(product, quantity)}>ADD TO CART</button>{" "}
+            <button onClick={() => addToCart(product, quantity)}>ADD TO CART</button>{" "}
           </div>
           <br />
           <div className="mb-5">
@@ -401,35 +404,17 @@ export default function Details({params}) {
             </div>
           </div>
           <br />
-          {/* <div>
+          <div>
             <p className="text-[16px] font-medium border-b border-gray-300 pb-3 ">
               SPECIFICATIONS
             </p>
+            {product?.feature?.map((feat) => (
             <div className="text-[13px] font-medium border-b border-gray-300 py-2 flex space-x-16 ">
-              <p className=" w-[30%]   ">Brand</p>
-              <p> BULLMAN</p>
+              <p className="w-[30%]">{feat?.name}</p>
+              <p>{feat?.value}</p>
             </div>
-            <div className="text-[13px] font-medium border-b border-gray-300 py-2 flex space-x-16 ">
-              <p className=" w-[30%]  ">Color </p>
-              <p> Black</p>
-            </div>
-            <div className="text-[13px] font-medium border-b border-gray-300 py-2 flex space-x-16 ">
-              <p className=" w-[30%]  ">Weight </p>
-              <p> 1.25-25kg</p>
-            </div>
-            <div className="text-[13px] font-medium border-b border-gray-300 py-2 flex space-x-16 ">
-              <p className=" w-[30%]  ">Diameter </p>
-              <p> 50.4mm</p>
-            </div>
-            <div className="text-[13px] font-medium border-b border-gray-300 py-2 flex space-x-16 ">
-              <p className=" w-[30%] ">Type of plates </p>
-              <p> Ergonomic (non-droppable)</p>
-            </div>
-            <div className="text-[13px] font-medium border-b border-gray-300 py-2 flex space-x-16 ">
-              <p className=" w-[30%]  ">Guarantee </p>
-              <p> 5 years</p>
-            </div>
-          </div> */}
+            ))}
+          </div>
         </div>
       </div>
 

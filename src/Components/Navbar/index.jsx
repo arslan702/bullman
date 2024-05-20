@@ -16,6 +16,7 @@ export default function Navbar() {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
   const handleMouseEnter = () => {
+    console.log('opened')
     setIsSubMenuOpen(true);
   };
 
@@ -30,6 +31,11 @@ export default function Navbar() {
   const handleSubMenuMouseLeave = () => {
     setIsSubMenuOpen(false);
   };
+
+  const handleClick = (category) => {
+    router.push(`/category?category=${encodeURIComponent(category)}`)
+  }
+
   return (
     <div className="pt-4 bg-black shadow-2xl" style={{boxShadow: '0 0 10px 0 rgba(0, 0, 0, .5)'}}>
       <div className="md:flex  justify-between cursor-pointer md:pl-16 md:pr-20 px-4">
@@ -40,11 +46,11 @@ export default function Navbar() {
             </a>
           </p>
         </div>
-        <div className="relative flex items-center md:mt-0 mt-1">
+        <div className="relative flex items-center md:mt-0 mt-1 h-[44px]">
           <input
             type="text"
             placeholder="Search..."
-            className="px-4 py-2 pr-10 md:w-[400px] text-white w-[100%] bg-black flex flex-1 border border-[#636363] rounded-[20px] focus:outline-none"
+            className="mada-bold text-[14px] px-4 py-2 pr-10 md:w-[400px] text-white w-[100%] bg-black flex flex-1 border border-[#ffffff] rounded-[20px] focus:outline-none"
           />
           <svg
             className="absolute right-2 h-[33px] w-[42px] text-gray-400 bg-black p-2"
@@ -55,10 +61,10 @@ export default function Navbar() {
             <IoSearch className="text-[22px] text-white" />
           </svg>
         </div>
-        <div className="md:flex  space-x-5  text-white md:mt-0 mt-2 ">
+        <div className="md:flex space-x-5 text-white md:mt-0 mt-2 ">
           <div className="text-[12px] md:block hidden ">
-            <p className="bg-[#315593] px-2 py-1 text-[#ffffff]">LIVRAISON OFFERTE À PARTIR DE 500€ </p>
-            <p className="text-[#315593]">ET SUR UNE SÉLECTION D'ARTICLES : ICI</p>{" "}
+            <p className="mada-bold text-[12px] bg-[#315593] px-2 py-1 text-[#ffffff]" style={{letterSpacing: '0.09375em'}}>LIVRAISON OFFERTE À PARTIR DE 500€ {'>'}</p>
+            <p className="mada-bold text-[12px] text-[#315593] p-[2px]" style={{letterSpacing: '0.09375em'}}>ET SUR UNE SÉLECTION D'ARTICLES : ICI</p>{" "}
           </div>
           <div className=" text-[18px] font-light flex justify-around md:space-x-6 space-x-5 mt-4 pb-3 text-white">
             {toggle ? (
@@ -74,8 +80,8 @@ export default function Navbar() {
             )}
 
             <CiLock />
-            <FaRegUser />
-            <RiShoppingCartLine onClick={() => router.push(`/order`)}/>
+            <FaRegUser size={15}/>
+            <RiShoppingCartLine size={16} onClick={() => router.push(`/order`)}/>
           </div>
         </div>
       </div>
@@ -127,15 +133,15 @@ export default function Navbar() {
               )}
             </div>
 
-            <li className="hover:text-[#2A4A80] mx-[10px]">FORCE & HALTÉRO</li>
-            <li className="hover:text-[#2A4A80] mx-[10px]">PREPARATION PHYSIQUE </li>
-            <li className="hover:text-[#2A4A80] mx-[10px]">GYMNASTIQUE</li>
-            <li className="hover:text-[#2A4A80] mx-[10px]">RIGS & RACKS</li>
-            <li className="hover:text-[#2A4A80] mx-[10px]">DISQUES</li>
-            <li className="hover:text-[#2A4A80] mx-[10px]">BARRES</li>
-            <li className="hover:text-[#2A4A80] mx-[10px]">MACHINES & ERGOS </li>
+            <li className="hover:text-[#2A4A80] mx-[10px] cursor-pointer" onClick={() => handleClick('STRENGTH & WEIGHTLIFTING')}>FORCE & HALTÉRO</li>
+            <li className="hover:text-[#2A4A80] mx-[10px] cursor-pointer" onClick={() => handleClick('A PHYSICAL TRAINING')}>PREPARATION PHYSIQUE </li>
+            <li className="hover:text-[#2A4A80] mx-[10px] cursor-pointer" onClick={() => handleClick('GYMNASTIC')}>GYMNASTIQUE</li>
+            <li className="hover:text-[#2A4A80] mx-[10px] cursor-pointer" onClick={() => handleClick('Rigs & Racks')}>RIGS & RACKS</li>
+            <li className="hover:text-[#2A4A80] mx-[10px] cursor-pointer" onClick={() => handleClick('PLATES')}>DISQUES</li>
+            <li className="hover:text-[#2A4A80] mx-[10px] cursor-pointer" onClick={() => handleClick('BAREBELLS')}>BARRES</li>
+            <li className="hover:text-[#2A4A80] mx-[10px] cursor-pointer" onClick={() => handleClick('MACHINES & ERGOS')}>MACHINES & ERGOS </li>
           </ul>
-          <button className="bg-[#325897] h-12 font-bold text-[13px] px-3 py-3 flex items-center justify-center ">
+          <button className="bg-[#325897] h-12 font-bold text-[13px] px-5 py-3 flex items-center justify-center ">
             PACKS
           </button>
         </div>
@@ -145,37 +151,37 @@ export default function Navbar() {
             toggle ? "left-0" : "left-[-100%]"
           }`}
         >
-          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
+          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4 cursor-pointer" onClick={() => handleClick('STRENGTH & WEIGHTLIFTING')}>
             FORCE & HALTÉRO
           </li>
-          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
+          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4 cursor-pointer" onClick={() => handleClick('A PHYSICAL TRAINING')}>
             PREPARATION PHYSIQUE
           </li>
-          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
+          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4 cursor-pointer" onClick={() => handleClick('GYMNASTIC')}>
             GYMNASTIQUE
           </li>
-          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
+          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4 cursor-pointer" onClick={() => handleClick('Rigs & Racks')}>
             RIGS & RACKS
           </li>
-          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
+          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4 cursor-pointer" onClick={() => handleClick('PLATES')}>
             DISQUES
           </li>
-          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
+          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4 cursor-pointer" onClick={() => handleClick('BAREBELLS')}>
             BARRES
           </li>
-          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
+          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4 cursor-pointer" onClick={() => handleClick('MACHINES & ERGOS')}>
             MACHINES & ERGOS
           </li>
-          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
+          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4 cursor-pointer" onClick={() => handleClick('BENCHES')}>
             BANCS
           </li>
-          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
+          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4 cursor-pointer" onClick={() => handleClick('ACCESSORIES')}>
             ACCESSOIRES
           </li>
-          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
+          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4 cursor-pointer" onClick={() => handleClick('STRENGTH & WEIGHTLIFTING')}>
             CARTES-CADEAUX
           </li>
-          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4">
+          <li className="leading-[20px] text-[12px] hover:bg-[#55595C] hover:text-white py-3 px-4 cursor-pointer" onClick={() => handleClick('Free Weights')}>
             HALTERES
           </li>
         </ul>
