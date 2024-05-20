@@ -1,18 +1,18 @@
 "use client";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { MdArrowRightAlt } from "react-icons/md";
 import { FaAngleDown, FaAngleUp, FaWeightHanging } from "react-icons/fa";
 import Image from "next/image";
-import img from "../../../../Images/29.webp";
-import img1 from "../../../../Images/30.webp";
-import img2 from "../../../../Images/31.webp";
-import img3 from "../../../../Images/32.webp";
+// import img from "../../../../Images/29.webp";
+// import img1 from "../../../../Images/30.webp";
+// import img2 from "../../../../Images/31.webp";
+// import img3 from "../../../../Images/32.webp";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { API_URL } from "@/config";
 
-export default function category() {
+function Category() {
   const router = useRouter();
   const searchParams = useSearchParams();
   let param = searchParams.get('category');
@@ -255,4 +255,12 @@ export default function category() {
       </div>
     </div>
   );
+}
+
+export default function CategoryPage () {
+  return (
+    <Suspense>
+      <Category/>
+    </Suspense>
+  )
 }
